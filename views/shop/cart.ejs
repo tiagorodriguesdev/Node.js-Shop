@@ -4,11 +4,14 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
         <!--  -->
-        <% if(prods.length > 0) { %>
-            <% for (let product of prods) { %>
-            <h2><%= product.title %> </h2>
+        <main>
+        <% if(products.length > 0) { %>
+            <% for (let product of products) { %>
+            <h3><%= product.productData.title %> </h3>
+            <p><%= product.qty %></p>
             <% } %>  
         <% }else { %>
         <h3>No products in the cart</h3>
-        <% } %>   
+        <% } %>
+        </main>   
         <%- include('../includes/end.ejs') %>
