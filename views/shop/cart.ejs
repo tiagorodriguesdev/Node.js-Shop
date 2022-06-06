@@ -1,17 +1,23 @@
 <%- include('../includes/head.ejs') %>
-    </head>
+</head>
 
-    <body>
-        <%- include('../includes/navigation.ejs') %>
-        <!--  -->
-        <main>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <!--  -->
+    <main>
         <% if(products.length > 0) { %>
             <% for (let product of products) { %>
-            <h3><%= product.productData.title %> </h3>
-            <p><%= product.qty %></p>
-            <% } %>  
-        <% }else { %>
-        <h3>No products in the cart</h3>
-        <% } %>
-        </main>   
-        <%- include('../includes/end.ejs') %>
+                <h3><%= product.productData.title %> </h3>
+                <p><%= product.qty %></p>
+                <form action="/cart/delete-product" method="POST">
+                    <input type="hidden" name="productId" value="<%= product.productData.id %>">
+                    <input type="hidden" name="productPrice" value="<%= product.productData.price * product.qty %>">
+                    <button class="btn" type="submit">Delete</button>
+                </form>
+                <% } %> 
+                <h4>Total: <%= cartTotals  %></h4>
+                <% }else { %>
+                    <h3>No products in the cart</h3>
+                    <% } %>
+                </main>   
+                <%- include('../includes/end.ejs') %>
